@@ -1,0 +1,54 @@
+# Initialize an empty list to store tasks
+tasks = []
+# Function to add a task to the list
+def add_task(task):
+    tasks.append({"task": task, "completed": False})
+    print(f"Task '{task}' added successfully!")
+# Function to delete a task from the list
+def delete_task(task_index):
+    if 0 <= task_index < len(tasks):
+        del tasks[task_index]
+        print("Task deleted successfully!")
+    else:
+        print("Invalid task index.")
+# Function to display the list of tasks
+def display_tasks():
+    if tasks:
+        print("Tasks:")
+        for index, task in enumerate(tasks):
+            status = "Done" if task["completed"] else "Pending"
+            print(f"{index + 1}. [{status}] {task['task']}")
+    else:
+        print("No tasks in the list.")
+# Function to mark a task as complete
+def mark_as_complete(task_index):
+    if 0 <= task_index < len(tasks):
+        tasks[task_index]["completed"] = True
+        print("Task marked as complete!")
+    else:
+        print("Invalid task index.")
+# Main program loop
+while True:
+    print("\n===== To-Do List =====")
+    print("1. Add Task")
+    print("2. Delete Task")
+    print("3. Display Tasks")
+    print("4. Mark Task as Complete")
+    print("5. Exit")
+    choice = input("Enter your choice (1-5): ")
+    if choice == "1":
+        task = input("Enter the task: ")
+        add_task(task)
+    elif choice == "2":
+        task_index = int(input("Enter the index of the task to delete: ")) - 1
+        delete_task(task_index)
+    elif choice == "3":
+        display_tasks()
+    elif choice == "4":
+        task_index = int(input("Enter the index of the task to mark as complete: ")) - 1
+        mark_as_complete(task_index)
+    elif choice == "5":
+        print("Exiting the program.")
+        break
+    else:
+        print("Invalid choice. Please enter a number between 1 and 5.")
